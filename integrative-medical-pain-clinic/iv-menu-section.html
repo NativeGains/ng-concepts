@@ -1,0 +1,175 @@
+<!-- IV therapy & injections section. Insert directly after the closing tag of <section id="services">.
+     Also add a nav link: <a href="#iv-menu">IV &amp; Injections</a> next to "Treatments" in the header and mobile menu.
+     Self-contained: scoped .imx styles, no JavaScript, no checkout, no booking app. Every action is a phone call. -->
+<style>
+.imx{background:#F7EFF2;padding:112px 0;font-family:"Inter Variable",system-ui,sans-serif;color:#1E1A1C}
+.imx *{box-sizing:border-box}
+.imx-wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+.imx-eyebrow{color:#B70050;font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin:0 0 14px}
+.imx-head{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:44px}
+.imx h2{font-family:"Fraunces Variable",Georgia,serif;font-weight:420;font-size:clamp(34px,4.2vw,48px);letter-spacing:-.02em;line-height:1.08;margin:0;max-width:640px}
+.imx h2 em{color:#9A0044;font-style:italic}
+.imx-lede{font-size:16px;line-height:1.6;color:rgba(30,26,28,.72);margin:16px 0 0;max-width:560px}
+.imx-callbox{background:#1E1A1C;color:#FCF9F7;border-radius:24px;padding:20px 22px;min-width:280px}
+.imx-callbox p{margin:0 0 12px;font-size:14px;color:rgba(252,249,247,.75)}
+.imx-callbox a{display:flex;justify-content:space-between;gap:16px;color:#FCF9F7;text-decoration:none;font-weight:500;font-size:15px;padding:8px 0;border-top:1px solid rgba(252,249,247,.14);white-space:nowrap}
+.imx-callbox a span{color:rgba(252,249,247,.6);font-weight:400}
+.imx-group{margin-top:56px}
+.imx-group:first-of-type{margin-top:0}
+.imx-gtitle{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(30,26,28,.12);padding-bottom:12px;margin-bottom:22px}
+.imx-gtitle h3{font-family:"Fraunces Variable",Georgia,serif;font-weight:400;font-size:26px;letter-spacing:-.01em;margin:0}
+.imx-gtitle span{font-size:13px;color:rgba(30,26,28,.6)}
+.imx-bags{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.imx-bag{background:#FCF9F7;border:1px solid rgba(30,26,28,.08);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.imx-bagart{background:linear-gradient(180deg,#F1E4EA,#FCF9F7);height:270px;display:flex;align-items:center;justify-content:center}
+.imx-bagart svg{height:244px;width:auto}
+.imx-bagbody{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.imx-tag{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#B70050;margin:0 0 6px}
+.imx-bag h4,.imx-card h4{font-family:"Fraunces Variable",Georgia,serif;font-weight:400;font-size:22px;letter-spacing:-.01em;margin:0 0 8px}
+.imx-desc{font-size:14.5px;line-height:1.55;color:rgba(30,26,28,.72);margin:0 0 18px;flex:1}
+.imx-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.imx-price{font-family:"Fraunces Variable",Georgia,serif;font-size:24px;color:#1E1A1C;white-space:nowrap}
+.imx-tbd{font-family:"Inter Variable",system-ui,sans-serif;font-size:13px;font-weight:600;color:#9A0044;background:#F7EFF2;border-radius:999px;padding:6px 12px;white-space:nowrap}
+.imx-btn{display:inline-flex;align-items:center;gap:8px;background:#9A0044;color:#FCF9F7;text-decoration:none;font-size:14px;font-weight:500;padding:10px 18px;border-radius:999px;white-space:nowrap}
+.imx-btn:hover{background:#7d0037}
+.imx-btn-ghost{background:transparent;color:#9A0044;border:1px solid rgba(154,0,68,.35)}
+.imx-btn-ghost:hover{background:#9A0044;color:#FCF9F7}
+.imx-shots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.imx-shot{background:#FCF9F7;border:1px solid rgba(30,26,28,.08);border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.imx-shot-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.imx-shot h5{font-family:"Fraunces Variable",Georgia,serif;font-weight:400;font-size:19px;margin:0}
+.imx-shot .imx-price{font-size:20px}
+.imx-shot p{margin:0;font-size:13.5px;line-height:1.5;color:rgba(30,26,28,.68)}
+.imx-shot-wide{grid-column:span 2}
+.imx-tiers{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.imx-tiers span{font-size:13px;background:#F7EFF2;border-radius:999px;padding:5px 11px;white-space:nowrap}
+.imx-tiers b{font-weight:600;color:#9A0044}
+.imx-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.imx-card{background:#FCF9F7;border:1px solid rgba(30,26,28,.08);border-radius:24px;padding:26px 28px;display:flex;flex-direction:column}
+.imx-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:0;list-style:none}
+.imx-chips li{font-size:13px;border:1px solid rgba(30,26,28,.14);border-radius:999px;padding:6px 12px;white-space:nowrap}
+.imx-note{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-size:14px;color:rgba(30,26,28,.7)}
+.imx-note span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#9A0044;margin-right:8px;vertical-align:middle}
+@media (max-width:1100px){.imx-bags,.imx-shots{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+ .imx{padding:80px 0}
+ .imx-bags,.imx-shots,.imx-cards{grid-template-columns:1fr}
+ .imx-shot-wide{grid-column:auto}
+ .imx-callbox{width:100%}
+ .imx-bagart{height:230px}.imx-bagart svg{height:205px}
+ .imx .imx-bags{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -24px;padding:0 24px 8px;scrollbar-width:none}
+ .imx .imx-bags::-webkit-scrollbar{display:none}
+ .imx .imx-bag{flex:0 0 82%;scroll-snap-align:start}
+ .imx .imx-gtitle{flex-wrap:wrap}
+}
+</style>
+
+<section id="iv-menu" class="imx" aria-labelledby="imx-h2">
+ <div class="imx-wrap">
+  <div class="imx-head">
+   <div>
+    <p class="imx-eyebrow">IV therapy &amp; injections</p>
+    <h2 id="imx-h2">IV therapy, injections and testing, <em>by phone.</em></h2>
+    <p class="imx-lede">See what we offer, with prices where they're set. There's no online checkout and no membership. Call either office to schedule and pay.</p>
+   </div>
+   <div class="imx-callbox">
+    <p>Call to book and pay</p>
+    <a href="tel:3128081200">Chicago <span>312-808-1200</span></a>
+    <a href="tel:8153987246">Rockford <span>815-398-7246</span></a>
+   </div>
+  </div>
+
+  <!-- IV DRIPS -->
+  <div class="imx-group">
+   <div class="imx-gtitle"><h3>IV therapy</h3><span>Call to book</span></div>
+   <div class="imx-bags">
+
+    <article class="imx-bag">
+     <div class="imx-bagart" aria-hidden="true">
+      <svg viewBox="0 0 120 200"><rect x="52" y="2" width="16" height="14" rx="3" fill="#d9c6ce"/><path d="M20 22h80a10 10 0 0 1 10 10v116a28 28 0 0 1-28 28H38a28 28 0 0 1-28-28V32a10 10 0 0 1 10-10z" fill="#fff" stroke="#e3d3da" stroke-width="2"/><path d="M12 92h96v56a26 26 0 0 1-26 26H38a26 26 0 0 1-26-26z" fill="#F4C64E" opacity=".6"/><rect x="26" y="48" width="68" height="64" rx="6" fill="#fff" stroke="#9A0044" stroke-width="1.5"/><text x="60" y="76" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#1E1A1C">MYERS'</text><text x="60" y="90" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#1E1A1C">COCKTAIL</text><rect x="44" y="99" width="32" height="2" fill="#9A0044"/><rect x="54" y="176" width="12" height="20" rx="3" fill="#d9c6ce"/></svg>
+     </div>
+     <div class="imx-bagbody">
+      <p class="imx-tag">IV therapy</p>
+      <h4>Myers' Cocktail</h4>
+      <p class="imx-desc">Essential vitamins and minerals by IV, for chronic fatigue and poor nutrient absorption.</p>
+      <div class="imx-row"><span class="imx-tbd">Price TBD</span><a class="imx-btn" href="tel:3128081200">Call to book</a></div>
+     </div>
+    </article>
+
+    <article class="imx-bag">
+     <div class="imx-bagart" aria-hidden="true">
+      <svg viewBox="0 0 120 200"><rect x="52" y="2" width="16" height="14" rx="3" fill="#d9c6ce"/><path d="M20 22h80a10 10 0 0 1 10 10v116a28 28 0 0 1-28 28H38a28 28 0 0 1-28-28V32a10 10 0 0 1 10-10z" fill="#fff" stroke="#e3d3da" stroke-width="2"/><path d="M12 92h96v56a26 26 0 0 1-26 26H38a26 26 0 0 1-26-26z" fill="#E9B7C9" opacity=".6"/><rect x="26" y="48" width="68" height="64" rx="6" fill="#fff" stroke="#9A0044" stroke-width="1.5"/><text x="60" y="76" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#1E1A1C">NAD+</text><text x="60" y="90" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#1E1A1C">IV THERAPY</text><rect x="44" y="99" width="32" height="2" fill="#9A0044"/><rect x="54" y="176" width="12" height="20" rx="3" fill="#d9c6ce"/></svg>
+     </div>
+     <div class="imx-bagbody">
+      <p class="imx-tag">IV therapy</p>
+      <h4>IV NAD+</h4>
+      <p class="imx-desc">A vital coenzyme that supports immune regulation and helps combat age-related decline.</p>
+      <div class="imx-row"><span class="imx-tbd">Price TBD</span><a class="imx-btn" href="tel:3128081200">Call to book</a></div>
+     </div>
+    </article>
+
+    <article class="imx-bag">
+     <div class="imx-bagart" aria-hidden="true">
+      <svg viewBox="0 0 120 200"><rect x="52" y="2" width="16" height="14" rx="3" fill="#d9c6ce"/><path d="M20 22h80a10 10 0 0 1 10 10v116a28 28 0 0 1-28 28H38a28 28 0 0 1-28-28V32a10 10 0 0 1 10-10z" fill="#fff" stroke="#e3d3da" stroke-width="2"/><path d="M12 92h96v56a26 26 0 0 1-26 26H38a26 26 0 0 1-26-26z" fill="#F2A65A" opacity=".6"/><rect x="26" y="48" width="68" height="64" rx="6" fill="#fff" stroke="#9A0044" stroke-width="1.5"/><text x="60" y="76" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#1E1A1C">HIGH-DOSE</text><text x="60" y="90" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#1E1A1C">VITAMIN C</text><rect x="44" y="99" width="32" height="2" fill="#9A0044"/><rect x="54" y="176" width="12" height="20" rx="3" fill="#d9c6ce"/></svg>
+     </div>
+     <div class="imx-bagbody">
+      <p class="imx-tag">IV therapy</p>
+      <h4>High-Dose Vitamin C</h4>
+      <p class="imx-desc">High-dose vitamin C to support your immune system and tissue regeneration.</p>
+      <div class="imx-row"><span class="imx-tbd">Price TBD</span><a class="imx-btn" href="tel:3128081200">Call to book</a></div>
+     </div>
+    </article>
+
+    <article class="imx-bag">
+     <div class="imx-bagart" aria-hidden="true">
+      <svg viewBox="0 0 120 200"><rect x="52" y="2" width="16" height="14" rx="3" fill="#d9c6ce"/><path d="M20 22h80a10 10 0 0 1 10 10v116a28 28 0 0 1-28 28H38a28 28 0 0 1-28-28V32a10 10 0 0 1 10-10z" fill="#fff" stroke="#e3d3da" stroke-width="2"/><path d="M12 92h96v56a26 26 0 0 1-26 26H38a26 26 0 0 1-26-26z" fill="#9FD3E0" opacity=".6"/><rect x="26" y="48" width="68" height="64" rx="6" fill="#fff" stroke="#9A0044" stroke-width="1.5"/><text x="60" y="76" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#1E1A1C">HANGOVER</text><text x="60" y="90" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#1E1A1C">THERAPY</text><rect x="44" y="99" width="32" height="2" fill="#9A0044"/><rect x="54" y="176" width="12" height="20" rx="3" fill="#d9c6ce"/></svg>
+     </div>
+     <div class="imx-bagbody">
+      <p class="imx-tag">IV therapy</p>
+      <h4>Hangover Therapy</h4>
+      <p class="imx-desc">An IV infusion that helps rehydrate and replenish nutrients after alcohol.</p>
+      <div class="imx-row"><span class="imx-tbd">Price TBD</span><a class="imx-btn" href="tel:3128081200">Call to book</a></div>
+     </div>
+    </article>
+
+   </div>
+  </div>
+
+  <!-- VITAMIN INJECTIONS -->
+  <div class="imx-group">
+   <div class="imx-gtitle"><h3>Vitamin injections</h3><span>Selected injections from our current menu</span></div>
+   <div class="imx-shots">
+    <div class="imx-shot"><div class="imx-shot-top"><h5>Energy Boost</h5><span class="imx-price">$30</span></div><p>Vitamin B12 for energy and to reduce fatigue.</p></div>
+    <div class="imx-shot"><div class="imx-shot-top"><h5>Detox and Glow</h5><span class="imx-price">$30</span></div><p>Glutathione for detoxification, recovery and radiant skin.</p></div>
+    <div class="imx-shot"><div class="imx-shot-top"><h5>Tri-Immune Boost</h5><span class="imx-price">$30</span></div><p>Glutathione, vitamin C and zinc for immune support.</p></div>
+    <div class="imx-shot"><div class="imx-shot-top"><h5>Skinny Boost</h5><span class="imx-price">$35</span></div><p>Lipo-Plus mix of methionine, inositol, choline, carnitine and B12.</p></div>
+    <div class="imx-shot"><div class="imx-shot-top"><h5>Fountain of Youth</h5><span class="imx-price">$30</span></div><p>CoQ10 with essential vitamins.</p></div>
+    <div class="imx-shot"><div class="imx-shot-top"><h5>Sunshine Boost</h5><span class="imx-price">$30</span></div></div>
+    <div class="imx-shot imx-shot-wide"><div class="imx-shot-top"><h5>NAD+ Injection</h5></div><div class="imx-tiers"><span>50mg <b>$50</b></span><span>75mg <b>$65</b></span><span>100mg <b>$75</b></span></div></div>
+   </div>
+  </div>
+
+  <!-- TESTING + PEPTIDES -->
+  <div class="imx-group">
+   <div class="imx-gtitle"><h3>Testing and peptides</h3><span>Call to ask</span></div>
+   <div class="imx-cards">
+    <article class="imx-card">
+     <p class="imx-tag">Lab testing</p>
+     <h4>Tests we offer</h4>
+     <ul class="imx-chips">
+      <li>Food sensitivity</li><li>Adrenal stress</li><li>Stool testing</li><li>Mold testing</li><li>Immune function</li><li>Essential fatty acids</li><li>Blood chemistry</li><li>Calprotectin rapid test</li><li>Secretory IgA</li><li>Food allergy vs. intolerance</li>
+     </ul>
+     <div class="imx-row" style="margin-top:auto"><span class="imx-tbd">Price TBD</span><a class="imx-btn imx-btn-ghost" href="tel:3128081200">Call to ask</a></div>
+    </article>
+    <article class="imx-card">
+     <p class="imx-tag">Peptide therapy</p>
+     <h4>Peptide therapy</h4>
+     <p class="imx-desc">Offered when appropriate as part of a personalized care plan.</p>
+     <div class="imx-row"><span class="imx-tbd">Price TBD</span><a class="imx-btn imx-btn-ghost" href="tel:3128081200">Call to ask</a></div>
+    </article>
+   </div>
+  </div>
+
+  <div class="imx-note"><span>Call to schedule and pay</span><span>No membership</span><span>Chicago and Rockford</span></div>
+ </div>
+</section>
