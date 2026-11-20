@@ -16,8 +16,12 @@ def get(path):
     with urllib.request.urlopen(req, timeout=60) as r:
         return r.read()
 
+def local(rel):
+    # GitHub Pages (Jekyll) skips folders that start with "_", so _astro/ becomes assets/
+    return rel.replace("_astro/", "assets/")
+
 def save(rel, data):
-    p = os.path.join(OUT, rel)
+    p = os.path.join(OUT, local(rel))
     os.makedirs(os.path.dirname(p), exist_ok=True)
     open(p, "wb").write(data)
 
@@ -31,7 +35,7 @@ for c in css_files:
     for a in ASSET.findall(css):
         assets.add(a)
     depth = c.count("/")
-    css = ASSET.sub(lambda m: "../" * depth + m.group(1), css)
+    css = ASSET.sub(lambda m: "../" * depth + local(m.group(1)), css)
     save(c, css.encode("utf-8"))
 for a in sorted(assets):
     if a in css_files or a.endswith("/") or "." not in a.split("/")[-1]:
@@ -39,7 +43,7 @@ for a in sorted(assets):
     save(a, get(PREFIX + a))
     print("asset", a)
 
-html = ASSET.sub(lambda m: "./" + m.group(1), html)
+html = ASSET.sub(lambda m: "./" + local(m.group(1)), html)
 html = html.replace('href="' + PREFIX + '"', 'href="./"')
 
 section = open(os.path.join(HERE, "iv-menu-section.html"), encoding="utf-8").read()
