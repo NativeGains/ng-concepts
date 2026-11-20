@@ -2,14 +2,14 @@
 
 Copies the original mockup from ship.place (page, CSS, fonts, images), inserts the
 IV therapy & injections section after the Treatments section, adds a nav link,
-and writes the result to _site/integrative-medical-pain-clinic/.
+and writes index.html plus assets into this folder (served by GitHub Pages from main).
 """
 import os, re, sys, urllib.request
 
 ORIGIN = "https://silly-stew-019w4.ship.place"
 PREFIX = "/relief-k8w3pd/"
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "..", "_site", "integrative-medical-pain-clinic")
+OUT = HERE
 
 def get(path):
     req = urllib.request.Request(ORIGIN + path, headers={"User-Agent": "Mozilla/5.0 NativeGains-build"})
